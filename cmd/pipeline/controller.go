@@ -51,6 +51,7 @@ import (
 
 const (
 	controllerName = "prow-pipeline-crd"
+	jenkinsXAgent  = "jenkins-x"
 )
 
 type controller struct {
@@ -362,7 +363,7 @@ func reconcile(c reconciler, key string) error {
 		// Do not want pipeline
 	case err != nil:
 		return fmt.Errorf("get prowjob: %v", err)
-	case pj.Spec.Agent != prowjobv1.TektonAgent:
+	case pj.Spec.Agent != jenkinsXAgent:
 		// Do not want a pipeline for this job
 	case pjutil.ClusterToCtx(pj.Spec.Cluster) != ctx:
 		// Build is in wrong cluster, we do not want this build
@@ -386,7 +387,7 @@ func reconcile(c reconciler, key string) error {
 	switch {
 	case !wantPipelineRun:
 		if !havePipelineRun {
-			if pj != nil && pj.Spec.Agent == prowjobv1.TektonAgent {
+			if pj != nil && pj.Spec.Agent == jenkinsXAgent {
 				logrus.Infof("Observed deleted: %s", key)
 			}
 			return nil
