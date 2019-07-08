@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 NAME := pipeline
 BUILD_TARGET = build
-SRC_FILES = ./*.go
+SRC_FILES = ./cmd/pipeline/*.go
 
 CGO_ENABLED = 0
 GO := GO111MODULE=on go
