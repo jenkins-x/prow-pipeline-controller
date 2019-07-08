@@ -71,7 +71,7 @@ func (o *options) parse(flags *flag.FlagSet, args []string) error {
 		return fmt.Errorf("Parse flags: %v", err)
 	}
 	if o.kubeconfig != "" && o.buildCluster != "" {
-		return errors.New("deprecated --builde-cluster may not be used with --kubeconfig")
+		return errors.New("deprecated --build-cluster may not be used with --kubeconfig")
 	}
 	if o.buildCluster != "" {
 		// TODO(fejta): change to warn and add a term date after plank migration
