@@ -155,6 +155,7 @@ github.com/influxdata/influxdb v0.0.0-20161215172503-049f9b42e9a5/go.mod h1:qZna
 github.com/jinzhu/gorm v0.0.0-20170316141641-572d0a0ab1eb/go.mod h1:Vla75njaFJ8clLU1W44h34PjIkijhjHIYnZxMqCdxqo=
 github.com/jinzhu/inflection v0.0.0-20190603042836-f5c5f50e6090/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v0.0.0-20181116074157-8ec929ed50c3/go.mod h1:oHTiXerJ20+SfYcrdlBO7rzZRJWGwSTQ0iUY2jI6Gfc=
+github.com/jinzhu/now v1.0.1/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af/go.mod h1:Nht3zPeWKUH0NzdCt2Blrr5ys8VGpn0CEB0cQHVjt7k=
 github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
 github.com/jonboulle/clockwork v0.1.0/go.mod h1:Ii8DK3G1RaLaWxj9trq07+26W01tbo22gdxWY5EU2bo=
@@ -434,6 +435,8 @@ k8s.io/repo-infra v0.0.0-20190329054012-df02ded38f95/go.mod h1:+G1xBfZDfVFsm1Tj/
 k8s.io/test-infra v0.0.0-20181019233642-2e10a0bbe9b3/go.mod h1:2NzXB13Ji0nqpyublHeiPC4FZwU0TknfvyaaNfl/BTA=
 k8s.io/test-infra v0.0.0-20190628235729-eb4a109306ac h1:plyvfCPp9rOQaZXTbf4w3T8TxAkMCv4sjGqiEpfCtgI=
 k8s.io/test-infra v0.0.0-20190628235729-eb4a109306ac/go.mod h1:mZ5eFHLLTftZvayqXgz5yrCIc2INSFHddnw9UDEZvuM=
+k8s.io/test-infra v0.0.0-20190709111002-c9d9081e68ff h1:3TdqsPtr009DyIfpBUKklOdCaURhPJq/tQeINmRz2bg=
+k8s.io/test-infra v0.0.0-20190709111002-c9d9081e68ff/go.mod h1:j6ZuObeFpir44tRLvbnW8XVyRg+j2fE91Oa/l7QqaC0=
 k8s.io/utils v0.0.0-20181019225348-5e321f9a457c h1:FVNQlf0b+xgJl9ko2aJXH3wqMfny57f5oSKJcnyRkL8=
 k8s.io/utils v0.0.0-20181019225348-5e321f9a457c/go.mod h1:8k8uAuAQ0rXslZKaEWd0c3oVhZz7sSzSiPnVZayjIX0=
 k8s.io/utils v0.0.0-20190607212802-c55fbcfc754a h1:2jUDc9gJja832Ftp+QbDV0tVhQHMISFn01els+2ZAcw=
