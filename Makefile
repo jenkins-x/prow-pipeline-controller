@@ -17,11 +17,16 @@ GOTESTSUM_FORMAT ?= standard-quiet
 GOTEST := GO111MODULE=on gotestsum --junitfile $(REPORTS_DIR)/integration.junit.xml --format $(GOTESTSUM_FORMAT) --
 endif
 
-build: 
+build: $(SRC_FILES)
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) $(BUILD_TARGET) $(BUILDFLAGS) -o build/$(NAME) $(SRC_FILES)
 
 test: make-reports-dir
 	CGO_ENABLED=$(CGO_ENABLED) $(GOTEST) -count=1 $(COVERFLAGS) -failfast -short ./...
 
+.PHONY: make-reports-dir
 make-reports-dir:
 	mkdir -p $(REPORTS_DIR)
+
+.PHONY: clean
+clean: ## Clean the generated artifacts
+	rm -rf build
