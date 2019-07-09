@@ -180,7 +180,7 @@ func main() {
 		pipelineConfigs[context] = *bc
 	}
 
-	controller := newController(kc, pjc, pjif.Prow().V1().ProwJobs(), pipelineConfigs, o.totURL, configAgent.Config, kube.RateLimiter(controllerName), nil)
+	controller, err := newController(kc, pjc, pjif.Prow().V1().ProwJobs(), pipelineConfigs, o.totURL, configAgent.Config, kube.RateLimiter(controllerName), nil)
 	if err != nil {
 		logrus.WithError(err).Fatal("Error creating controller")
 	}

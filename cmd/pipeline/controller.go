@@ -158,9 +158,12 @@ func (c *controller) hasSynced() bool {
 }
 
 func newController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjobinfov1.ProwJobInformer, pipelineConfigs map[string]pipelineConfig,
-	totURL string, prowConfig config.Getter, rl workqueue.RateLimitingInterface, logger *logrus.Entry) *controller {
+	totURL string, prowConfig config.Getter, rl workqueue.RateLimitingInterface, logger *logrus.Entry) (*controller, error) {
 	// Log to events
-	prowjobscheme.AddToScheme(scheme.Scheme)
+	err := prowjobscheme.AddToScheme(scheme.Scheme)
+	if err != nil {
+		return nil, err
+	}
 	eventBroadcaster := record.NewBroadcaster()
 	eventBroadcaster.StartLogging(logrus.Infof)
 	eventBroadcaster.StartRecordingToSink(&corev1.EventSinkImpl{Interface: kc.CoreV1().Events("")})
@@ -228,7 +231,7 @@ func newController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjo
 		})
 	}
 
-	return c
+	return c, nil
 }
 
 // Run starts threads workers, returning after receiving a stop signal.
