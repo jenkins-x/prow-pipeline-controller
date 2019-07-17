@@ -1,0 +1,23 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.VERSION}}"
+  artifacts:
+    - imageName: jenkinsxio/prow-pipeline-controller
+      workspace: .
+      docker: {}
+  local: {}
+deploy:
+  kubectl:
+    manifests:
+profiles:
+  - name: dev
+    build:
+      tagPolicy:
+        envTemplate:
+          template: "{{.DOCKER_REGISTRY}}/{{.IMAGE_NAME}}:{{.DIGEST_HEX}}"
+      artifacts:
+        - imageName: jenkinsxio/prow-pipeline-controller
+

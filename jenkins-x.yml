@@ -24,14 +24,11 @@ pipelineConfig:
           - name: ORG
             value: jenkinsxio
           steps:
-          - name: build-and-push-image
-            image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
-            command: /kaniko/executor
+          - name: build
+            image: golang:1.12.6
+            command: make
             args: 
-            - --dockerfile=/workspace/source/Dockerfile
-            - --destination=gcr.io/jenkinsxio/prow-pipeline-controller:${inputs.params.version}
-            - --context=/workspace/source
-            - --cache-dir=/workspace
+            - all
     release:
       pipeline:
         agent:
