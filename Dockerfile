@@ -1,11 +1,7 @@
-FROM golang:1.12.6
+FROM alpine:3.10
 
-COPY . /go/src/github.com/jenkins-x/prow-pipeline-controller
-WORKDIR /go/src/github.com/jenkins-x/prow-pipeline-controller
-RUN make build
+RUN apk --update add ca-certificates git
 
-FROM scratch
+COPY ./build/pipeline /usr/bin/pipeline
 
-COPY --from=0 /go/src/github.com/jenkins-x/prow-pipeline-controller/build/pipeline /pipeline
-
-CMD ["/pipeline]
+CMD ["/usr/bin/pipeline"]

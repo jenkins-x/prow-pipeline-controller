@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package controller
 
 import (
 	"bytes"
@@ -43,6 +43,8 @@ import (
 	duckv1alpha1 "github.com/knative/pkg/apis/duck/v1alpha1"
 	"github.com/sirupsen/logrus"
 	pipelinev1alpha1 "github.com/tektoncd/pipeline/pkg/apis/pipeline/v1alpha1"
+	pipelineset "github.com/tektoncd/pipeline/pkg/client/clientset/versioned"
+	pipelineinfov1alpha1 "github.com/tektoncd/pipeline/pkg/client/informers/externalversions/pipeline/v1alpha1"
 	untypedcorev1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -61,7 +63,8 @@ import (
 )
 
 const (
-	controllerName = "prow-pipeline-crd"
+	// ControllerName is name of the Controller
+	ControllerName = "prow-pipeline-crd"
 	prowJobName    = "prowJobName"
 	pipelineRun    = "PipelineRun"
 	prowJob        = "ProwJob"
@@ -70,10 +73,17 @@ const (
 	maxPipelineRunRequestTimeout = 5 * time.Minute
 )
 
-type controller struct {
+// PipelineConfig contains the required config to run the Controller.
+type PipelineConfig struct {
+	Client   pipelineset.Interface
+	Informer pipelineinfov1alpha1.PipelineRunInformer
+}
+
+// Controller defines all the required logic for the pipeline controller.
+type Controller struct {
 	config    config.Getter
 	pjc       prowjobset.Interface
-	pipelines map[string]pipelineConfig
+	pipelines map[string]PipelineConfig
 	totURL    string
 
 	pjLister   prowjoblisters.ProwJobLister
@@ -113,17 +123,17 @@ type ObjectReference struct {
 }
 
 // pjNamespace retruns the prow namespace from configuration
-func (c *controller) pjNamespace() string {
+func (c *Controller) pjNamespace() string {
 	return c.config().ProwJobNamespace
 }
 
 // PipelineRunnerURL returns the URL of the pipeline runner service
-func (c *controller) pipelineRunnerURL() string {
+func (c *Controller) pipelineRunnerURL() string {
 	return "http://pipelinerunner"
 }
 
-// hasSynced returns true when every prowjob and pipeline informer has synced.
-func (c *controller) hasSynced() bool {
+// hasSynced returns true when every prowjob and pipeline Informer has synced.
+func (c *Controller) hasSynced() bool {
 	if !c.pjInformer.HasSynced() {
 		if c.wait != "prowjobs" {
 			c.wait = "prowjobs"
@@ -143,7 +153,7 @@ func (c *controller) hasSynced() bool {
 		c.pipelinesDone = map[string]bool{}
 	}
 	for n, cfg := range c.pipelines {
-		if !cfg.informer.Informer().HasSynced() {
+		if !cfg.Informer.Informer().HasSynced() {
 			if c.wait != n {
 				c.wait = n
 				logrus.Infof("Waiting on %s pipelines...", n)
@@ -157,8 +167,9 @@ func (c *controller) hasSynced() bool {
 	return true // Everyone is synced
 }
 
-func newController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjobinfov1.ProwJobInformer, pipelineConfigs map[string]pipelineConfig,
-	totURL string, prowConfig config.Getter, rl workqueue.RateLimitingInterface, logger *logrus.Entry) (*controller, error) {
+// NewController creates a new instance of this Controller
+func NewController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjobinfov1.ProwJobInformer, pipelineConfigs map[string]PipelineConfig,
+	totURL string, prowConfig config.Getter, rl workqueue.RateLimitingInterface, logger *logrus.Entry) (*Controller, error) {
 	// Log to events
 	err := prowjobscheme.AddToScheme(scheme.Scheme)
 	if err != nil {
@@ -167,13 +178,13 @@ func newController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjo
 	eventBroadcaster := record.NewBroadcaster()
 	eventBroadcaster.StartLogging(logrus.Infof)
 	eventBroadcaster.StartRecordingToSink(&corev1.EventSinkImpl{Interface: kc.CoreV1().Events("")})
-	recorder := eventBroadcaster.NewRecorder(scheme.Scheme, untypedcorev1.EventSource{Component: controllerName})
+	recorder := eventBroadcaster.NewRecorder(scheme.Scheme, untypedcorev1.EventSource{Component: ControllerName})
 
 	if logger == nil {
 		logger = logrus.NewEntry(logrus.StandardLogger())
 	}
 
-	c := &controller{
+	c := &Controller{
 		config:     prowConfig,
 		pjc:        pjc,
 		pipelines:  pipelineConfigs,
@@ -218,7 +229,7 @@ func newController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjo
 	for ctx, cfg := range pipelineConfigs {
 		// Reconcile whenever a pipelinerun changes.
 		ctx := ctx // otherwise it will change
-		cfg.informer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{
+		cfg.Informer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{
 			AddFunc: func(obj interface{}) {
 				c.enqueueKey(ctx, obj)
 			},
@@ -235,12 +246,12 @@ func newController(kc kubernetes.Interface, pjc prowjobset.Interface, pji prowjo
 }
 
 // Run starts threads workers, returning after receiving a stop signal.
-func (c *controller) Run(threads int, stop <-chan struct{}) error {
+func (c *Controller) Run(threads int, stop <-chan struct{}) error {
 	defer runtime.HandleCrash()
 	defer c.workqueue.ShutDown()
 
-	logrus.Info("Starting Pipeline controller")
-	logrus.Info("Waiting for informer caches to sync")
+	logrus.Info("Starting Pipeline Controller")
+	logrus.Info("Waiting for Informer caches to sync")
 	if ok := cache.WaitForCacheSync(stop, c.hasSynced); !ok {
 		return fmt.Errorf("failed to wait for caches to sync")
 	}
@@ -257,7 +268,7 @@ func (c *controller) Run(threads int, stop <-chan struct{}) error {
 }
 
 // runWorker dequeues to reconcile, until the queue has closed.
-func (c *controller) runWorker() {
+func (c *Controller) runWorker() {
 	for {
 		key, shutdown := c.workqueue.Get()
 		if shutdown {
@@ -290,7 +301,7 @@ func fromKey(key string) (string, string, string, string, error) {
 }
 
 // enqueueKey schedules an item for reconciliation
-func (c *controller) enqueueKey(ctx string, obj interface{}) {
+func (c *Controller) enqueueKey(ctx string, obj interface{}) {
 	switch o := obj.(type) {
 	case *prowjobv1.ProwJob:
 		ns := o.Spec.Namespace
@@ -320,29 +331,29 @@ type reconciler interface {
 	getProwJobURL(prowjobv1.ProwJob) string
 }
 
-func (c *controller) getPipelineConfig(ctx string) (pipelineConfig, error) {
+func (c *Controller) getPipelineConfig(ctx string) (PipelineConfig, error) {
 	cfg, ok := c.pipelines[ctx]
 	if !ok {
 		defaultCtx := kube.DefaultClusterAlias
 		defaultCfg, ok := c.pipelines[defaultCtx]
 		if !ok {
-			return pipelineConfig{}, fmt.Errorf("no cluster configuration found for default context %q", defaultCtx)
+			return PipelineConfig{}, fmt.Errorf("no cluster configuration found for default context %q", defaultCtx)
 		}
 		return defaultCfg, nil
 	}
 	return cfg, nil
 }
 
-func (c *controller) getProwJob(name string) (*prowjobv1.ProwJob, error) {
+func (c *Controller) getProwJob(name string) (*prowjobv1.ProwJob, error) {
 	return c.pjLister.ProwJobs(c.pjNamespace()).Get(name)
 }
 
-func (c *controller) updateProwJob(pj *prowjobv1.ProwJob) (*prowjobv1.ProwJob, error) {
+func (c *Controller) updateProwJob(pj *prowjobv1.ProwJob) (*prowjobv1.ProwJob, error) {
 	logrus.Debugf("updateProwJob(%s)", pj.Name)
 	return c.pjc.ProwV1().ProwJobs(c.pjNamespace()).Update(pj)
 }
 
-func (c *controller) patchProwJob(newpj *prowjobv1.ProwJob) error {
+func (c *Controller) patchProwJob(newpj *prowjobv1.ProwJob) error {
 	pj, err := c.pjc.ProwV1().ProwJobs(newpj.Namespace).Get(newpj.GetName(), metav1.GetOptions{})
 	if err != nil {
 		return fmt.Errorf("getting ProwJob/%s: %v", newpj.GetName(), err)
@@ -369,15 +380,15 @@ func (c *controller) patchProwJob(newpj *prowjobv1.ProwJob) error {
 	return err
 }
 
-func (c *controller) getPipelineRun(context, namespace, name string) (*pipelinev1alpha1.PipelineRun, error) {
+func (c *Controller) getPipelineRun(context, namespace, name string) (*pipelinev1alpha1.PipelineRun, error) {
 	p, err := c.getPipelineConfig(context)
 	if err != nil {
 		return nil, err
 	}
-	return p.informer.Lister().PipelineRuns(namespace).Get(name)
+	return p.Informer.Lister().PipelineRuns(namespace).Get(name)
 }
 
-func (c *controller) getPipelineRunsWithSelector(context, namespace, selector string) ([]*pipelinev1alpha1.PipelineRun, error) {
+func (c *Controller) getPipelineRunsWithSelector(context, namespace, selector string) ([]*pipelinev1alpha1.PipelineRun, error) {
 	p, err := c.getPipelineConfig(context)
 	if err != nil {
 		return nil, err
@@ -387,7 +398,7 @@ func (c *controller) getPipelineRunsWithSelector(context, namespace, selector st
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse selector %s", selector)
 	}
-	runs, err := p.informer.Lister().PipelineRuns(namespace).List(label)
+	runs, err := p.Informer.Lister().PipelineRuns(namespace).List(label)
 	if err != nil {
 		return nil, fmt.Errorf("failed to list pipelineruns with label %s", label.String())
 	}
@@ -403,37 +414,37 @@ func (c *controller) getPipelineRunsWithSelector(context, namespace, selector st
 	return runs, nil
 }
 
-func (c *controller) deletePipelineRun(context, namespace, name string) error {
+func (c *Controller) deletePipelineRun(context, namespace, name string) error {
 	logrus.Debugf("deletePipeline(%s,%s,%s)", context, namespace, name)
 	p, err := c.getPipelineConfig(context)
 	if err != nil {
 		return err
 	}
-	return p.client.TektonV1alpha1().PipelineRuns(namespace).Delete(name, &metav1.DeleteOptions{})
+	return p.Client.TektonV1alpha1().PipelineRuns(namespace).Delete(name, &metav1.DeleteOptions{})
 }
-func (c *controller) createPipelineRun(context, namespace string, p *pipelinev1alpha1.PipelineRun) (*pipelinev1alpha1.PipelineRun, error) {
+func (c *Controller) createPipelineRun(context, namespace string, p *pipelinev1alpha1.PipelineRun) (*pipelinev1alpha1.PipelineRun, error) {
 	logrus.Debugf("createPipelineRun(%s,%s,%s)", context, namespace, p.Name)
 	pc, err := c.getPipelineConfig(context)
 	if err != nil {
 		return nil, err
 	}
-	return pc.client.TektonV1alpha1().PipelineRuns(namespace).Create(p)
+	return pc.Client.TektonV1alpha1().PipelineRuns(namespace).Create(p)
 }
 
-func (c *controller) createPipelineResource(context, namespace string, pr *pipelinev1alpha1.PipelineResource) (*pipelinev1alpha1.PipelineResource, error) {
+func (c *Controller) createPipelineResource(context, namespace string, pr *pipelinev1alpha1.PipelineResource) (*pipelinev1alpha1.PipelineResource, error) {
 	logrus.Debugf("createPipelineResource(%s,%s,%s)", context, namespace, pr.Name)
 	pc, err := c.getPipelineConfig(context)
 	if err != nil {
 		return nil, err
 	}
-	return pc.client.TektonV1alpha1().PipelineResources(namespace).Create(pr)
+	return pc.Client.TektonV1alpha1().PipelineResources(namespace).Create(pr)
 }
 
-func (c *controller) now() metav1.Time {
+func (c *Controller) now() metav1.Time {
 	return metav1.Now()
 }
 
-func (c *controller) pipelineID(pj prowjobv1.ProwJob) (string, error) {
+func (c *Controller) pipelineID(pj prowjobv1.ProwJob) (string, error) {
 	if pj.Spec.Refs == nil {
 		return "", fmt.Errorf("no spec refs")
 	}
@@ -449,7 +460,7 @@ func (c *controller) pipelineID(pj prowjobv1.ProwJob) (string, error) {
 	return pjutil.GetBuildID(jobName, c.totURL)
 }
 
-func (c *controller) getProwJobURL(pj prowjobv1.ProwJob) string {
+func (c *Controller) getProwJobURL(pj prowjobv1.ProwJob) string {
 	return pjutil.JobURL(c.config().Plank, pj, c.log)
 }
 
@@ -819,7 +830,7 @@ func makePipelineRunWithPrefix(pj prowjobv1.ProwJob, buildID string, pr *pipelin
 }
 
 // requestPipelineRun sends a request to an external service to start the pipeline
-func (c *controller) requestPipelineRun(context, namespace string, pj prowjobv1.ProwJob) (string, error) {
+func (c *Controller) requestPipelineRun(context, namespace string, pj prowjobv1.ProwJob) (string, error) {
 	pipelineURL, err := url.Parse(c.pipelineRunnerURL())
 	if err != nil {
 		return "", fmt.Errorf("invalid pipelinerunner url: %v", err)
@@ -855,9 +866,8 @@ func (c *controller) requestPipelineRun(context, namespace string, pj prowjobv1.
 		respData, err1 := ioutil.ReadAll(resp.Body)
 		if err1 != nil {
 			return "", fmt.Errorf("%s: %v", errorMessage, resp.Status)
-		} else {
-			return "", fmt.Errorf("%s: %v, %s", errorMessage, resp.Status, string(respData))
 		}
+		return "", fmt.Errorf("%s: %v, %s", errorMessage, resp.Status, string(respData))
 	}
 
 	respData, err := ioutil.ReadAll(resp.Body)
