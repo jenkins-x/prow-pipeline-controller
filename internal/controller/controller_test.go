@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package controller
 
 import (
 	"errors"
@@ -267,7 +267,7 @@ func TestEnqueueKey(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			var fl fakeLimiter
-			c := controller{
+			c := Controller{
 				workqueue: &fl,
 			}
 			c.enqueueKey(tc.context, tc.obj)
@@ -396,7 +396,7 @@ func TestReconcile(t *testing.T) {
 			err:                 true,
 		},
 		{
-			name: "only delete pipeline runs created by controller",
+			name: "only delete pipeline runs created by Controller",
 			observedPipelineRuns: func() []*pipelinev1alpha1.PipelineRun {
 				pj := prowjobv1.ProwJob{}
 				pj.Spec.Type = prowjobv1.PeriodicJob
