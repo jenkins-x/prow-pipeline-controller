@@ -32,6 +32,12 @@ $ make test
 $ make check
 ```
 
+### Build Docker image
+
+```bash   
+$ make docker
+```
+
 ### Cleanup
 
 ```bash   

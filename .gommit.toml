@@ -4,7 +4,8 @@ check-summary-length=true
 summary-length=70
 
 [matchers]
-all="(?:feat|test|fix|docs|refactor|perf|chore)(\\(.*?\\))?: .*?\n(?:\n?(?:\\* |  ).*?\n)*"
+conventional="(?:feat|test|fix|docs|refactor|perf|chore)(\\(.*?\\))?: .*?\n(?:\n?(?:\\* |  ).*?\n)*"
+release="release [0-9]+.[0-9]+.[0-9]+"
 
 [examples]
 a_simple_commit="""
