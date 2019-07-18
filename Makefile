@@ -13,7 +13,7 @@ PKGS := $(subst  :,_,$(PACKAGE_DIRS))
 PLATFORMS := windows linux darwin
 os = $(word 1, $@)
 
-DOCKER_REGISTRY ?= localhost:5000
+IMAGE_NAME ?= jenkinsxio/prow-pipeline-controller
 VERSION ?= $(shell cat VERSION)
 
 GOMMIT_START_SHA ?= bd117413980c6f62ef9fa3361d532a164da8ac2a
@@ -53,29 +53,13 @@ check: $(GOLINT) $(FGT) $(GOMMIT)
 run: $(OS) ## Runs the app locally
 	$(BUILD_DIR)/$(APP_NAME)
 
-.PHONY: skaffold-build
-skaffold-build: linux ## Runs 'skaffold build'
-	DOCKER_REGISTRY=$(DOCKER_REGISTRY) VERSION=$(VERSION) skaffold build -f skaffold.yaml
+.PHONY: docker
+docker: linux ## Runs local Docker build of image
+	docker build -t $(IMAGE_NAME):$(VERSION) .
 
 .PHONY: help
 help: ## Prints this help
 	@grep -E '^[^.]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-40s\033[0m %s\n", $$1, $$2}'
-
-.PHONY: release
-release: linux test check next-version skaffold-build tag-release ## Creates a release
-	jx step changelog --version v$(VERSION) -p $$(git merge-base $$(git for-each-ref --sort=-creatordate --format='%(objectname)' refs/tags | sed -n 2p) master) -r $$(git merge-base $$(git for-each-ref --sort=-creatordate --format='%(objectname)' refs/tags | sed -n 1p) master)
-
-.PHONY: next-version
-next-version:  ## Creates release tag and pushes release
-	jx step next-version --use-git-tag-only --tag=false
-
-.PHONY: tag-release
-tag-release:  ## Creates release tag and pushes release
-	git checkout $$(git rev-parse HEAD)
-	git add --all
-	git commit -m "release $(VERSION)" --allow-empty
-	git tag -fa v$(VERSION) -m "release version $(VERSION)"
-	#git push origin HEAD v$(VERSION)
 
 # Targets to get some Go tools
 $(FGT):
