@@ -20,6 +20,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"github.com/jenkins-x/prow-pipeline-controller/internal/controller"
 	"os"
 	"os/signal"
 	"syscall"
@@ -34,7 +35,6 @@ import (
 
 	pipelineset "github.com/tektoncd/pipeline/pkg/client/clientset/versioned"
 	pipelineinfo "github.com/tektoncd/pipeline/pkg/client/informers/externalversions"
-	pipelineinfov1alpha1 "github.com/tektoncd/pipeline/pkg/client/informers/externalversions/pipeline/v1alpha1"
 
 	"github.com/sirupsen/logrus"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -96,13 +96,8 @@ func stopper() chan struct{} {
 	return stop
 }
 
-type pipelineConfig struct {
-	client   pipelineset.Interface
-	informer pipelineinfov1alpha1.PipelineRunInformer
-}
-
 // newPipelineConfig returns a client and informer capable of mutating and monitoring the specified config.
-func newPipelineConfig(cfg rest.Config, stop chan struct{}) (*pipelineConfig, error) {
+func newPipelineConfig(cfg rest.Config, stop chan struct{}) (*controller.PipelineConfig, error) {
 	bc, err := pipelineset.NewForConfig(&cfg)
 	if err != nil {
 		return nil, err
@@ -118,9 +113,9 @@ func newPipelineConfig(cfg rest.Config, stop chan struct{}) (*pipelineConfig, er
 	bif := pipelineinfo.NewSharedInformerFactory(bc, 30*time.Minute)
 	bif.Tekton().V1alpha1().PipelineRuns().Lister()
 	go bif.Start(stop)
-	return &pipelineConfig{
-		client:   bc,
-		informer: bif.Tekton().V1alpha1().PipelineRuns(),
+	return &controller.PipelineConfig{
+		Client:   bc,
+		Informer: bif.Tekton().V1alpha1().PipelineRuns(),
 	}, nil
 }
 
@@ -166,9 +161,9 @@ func main() {
 	pjif.Prow().V1().ProwJobs().Lister()
 	go pjif.Start(stop)
 
-	pipelineConfigs := map[string]pipelineConfig{}
+	pipelineConfigs := map[string]controller.PipelineConfig{}
 	for context, cfg := range configs {
-		var bc *pipelineConfig
+		var bc *controller.PipelineConfig
 		bc, err = newPipelineConfig(cfg, stop)
 		if apierrors.IsNotFound(err) {
 			logrus.WithError(err).Warnf("Ignoring %s: knative pipeline CRD not deployed", context)
@@ -180,13 +175,13 @@ func main() {
 		pipelineConfigs[context] = *bc
 	}
 
-	controller, err := newController(kc, pjc, pjif.Prow().V1().ProwJobs(), pipelineConfigs, o.totURL, configAgent.Config, kube.RateLimiter(controllerName), nil)
+	pipelineController, err := controller.NewController(kc, pjc, pjif.Prow().V1().ProwJobs(), pipelineConfigs, o.totURL, configAgent.Config, kube.RateLimiter(controller.ControllerName), nil)
 	if err != nil {
-		logrus.WithError(err).Fatal("Error creating controller")
+		logrus.WithError(err).Fatal("Error creating pipelineController")
 	}
 
-	if err := controller.Run(2, stop); err != nil {
-		logrus.WithError(err).Fatal("Error running controller")
+	if err := pipelineController.Run(2, stop); err != nil {
+		logrus.WithError(err).Fatal("Error running pipelineController")
 	}
 	logrus.Info("Finished")
 }
