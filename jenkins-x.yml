@@ -16,11 +16,6 @@ pipelineConfig:
         stages:
         - name: ci
           steps:
-          - name: unshallow
-            command: git
-            args:
-              - fetch
-              - --unshallow
           - name: build
             command: make
             args: 
