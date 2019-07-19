@@ -1,6 +1,9 @@
 # Prow Pipeline Controller
 
-This is a replacement of the original Prow [pipeline controller](https://github.com/kubernetes/test-infra/tree/master/prow/cmd/pipeline) intended for use within Jenkins-X.
+This is a replacement controller for the original Prow [pipeline controller](https://github.com/kubernetes/test-infra/tree/master/prow/cmd/pipeline) intended for use within Jenkins-X.
+In contrast to the original controller, this version is aware of the Jenkins-X [pipelinerunner](https://github.com/jenkins-x/jx/blob/master/pkg/cmd/controller/pipelinerunner.go) controller available in `jx` and triggers pipeline runs by making HTTP requests to this controller.
+
+The Prow Pipeline Controller is used and configured as part of the [Prow Helm charts](https://github.com/jenkins-x-charts/prow/tree/master/prow/) for Jenkins-X.
 
 ## Development
 
