@@ -1,0 +1,834 @@
+Step: build-step-credential-initializer-wphx6:
+
+{"level":"warn","ts":1565203681.5279422,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565203681.5289867,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-working-dir-initializer-zjf9k:
+
+{"level":"warn","ts":1565203683.4835386,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1565203683.5369043,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Step: build-step-place-tools:
+
+Step: build-step-git-source-jenkins-x-prow-pipeline-control-6wqfp:
+
+{"level":"warn","ts":1565203686.7212386,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565203689.2134783,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/jenkins-x/prow-pipeline-controller @ 5a5c8dc8b4f4b02a5359f79c0226980a441e1dc4 in path /workspace/source"}
+Step: build-step-git-merge:
+
+Warning failed to load version: failed to parse version -dev+9e73adc0b: No Major.Minor.Patch elements found
+time="2019-08-07T18:48:13Z" level=info msg="got "
+Using SHAs from PULL_REFS=master:162ab03ad5cfc4d734cc9c92c810072f31b98d47,16:5a5c8dc8b4f4b02a5359f79c0226980a441e1dc4
+ran git fetch --unshallow origin 5a5c8dc8b4f4b02a5359f79c0226980a441e1dc4: 162ab03ad5cfc4d734cc9c92c810072f31b98d47: in 
+ran git checkout master in 
+ran git reset --hard 162ab03ad5cfc4d734cc9c92c810072f31b98d47 in 
+ran clean --force -d . in 
+ran git merge 5a5c8dc8b4f4b02a5359f79c0226980a441e1dc4 in 
+Step: build-step-build:
+
+go: finding github.com/knative/pkg v0.0.0-20190330034653-916205998db9
+go: finding github.com/evanphx/json-patch v4.2.0+incompatible
+go: finding k8s.io/apimachinery v0.0.0-20190122181752-bebe27e40fb7
+go: finding k8s.io/apiextensions-apiserver v0.0.0-20181128195303-1f84094d7e8e
+go: finding k8s.io/client-go v9.0.0+incompatible
+go: finding k8s.io/test-infra v0.0.0-20190709111002-c9d9081e68ff
+go: finding k8s.io/api v0.0.0-20181128191700-6db15a15d2d3
+go: finding github.com/sirupsen/logrus v1.4.2
+go: finding github.com/tektoncd/pipeline v0.1.1-0.20190327171839-7c43fbae2816
+go: finding github.com/stretchr/testify v1.2.2
+go: finding github.com/stretchr/ob** v0.1.1
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding github.com/konsorten/go-windows-terminal-sequences v1.0.1
+go: finding golang.org/x/sys v0.0.0-20190422165155-953cdadca894
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/djherbis/atime v1.0.0
+go: finding golang.org/x/net v0.0.0-20190403144856-b630fd6fe46b
+go: finding github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc
+go: finding google.golang.org/grpc v1.19.1
+go: finding github.com/fsnotify/fsnotify v1.4.7
+go: finding k8s.io/kubernetes v1.14.3
+go: finding k8s.io/klog v0.1.0
+go: finding github.com/mattn/go-sqlite3 v0.0.0-20160514122348-38ee283dabf1
+go: finding github.com/jinzhu/inflection v0.0.0-20190603042836-f5c5f50e6090
+go: finding github.com/Azure/azure-pipeline-go v0.1.9
+go: finding github.com/satori/go.uuid v0.0.0-20160713180306-0aa62d5ddceb
+go: finding github.com/bazelbuild/buildtools v0.0.0-20190404153937-93253d6efaa9
+go: finding github.com/golang/protobuf v1.3.1
+go: finding github.com/markbates/inflect v1.0.4
+go: finding github.com/klauspost/cpuid v1.2.1
+go: finding github.com/gomodule/redigo v1.7.0
+go: finding github.com/deckarep/golang-set v0.0.0-20171013212420-1d4478f51bed
+go: finding github.com/klauspost/pgzip v1.2.1
+go: finding github.com/knative/build v0.3.1-0.20190330033454-38ace00371c7
+go: finding github.com/PuerkitoBio/purell v1.1.1
+go: finding github.com/lib/pq v1.0.0
+go: finding google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107
+go: finding golang.org/x/time v0.0.0-20181108054448-85acf8d2951c
+go: finding mvdan.cc/xurls/v2 v2.0.0
+go: finding github.com/jinzhu/gorm v0.0.0-20170316141641-572d0a0ab1eb
+go: finding github.com/Azure/azure-storage-blob-go v0.0.0-20190123011202-457680cc0804
+go: finding github.com/BurntSushi/toml v0.3.1
+go: finding golang.org/x/net v0.0.0-20190213061140-3a22650c66bd
+go: finding github.com/xlab/handysort v0.0.0-20150421192137-fb3537ed64a1
+go: finding k8s.io/apimachinery v0.0.0-20181128191346-49ce2735e507
+go: finding github.com/aws/aws-k8s-tester v0.0.0-20190114231546-b411acf57dfe
+go: finding github.com/gophercloud/gophercloud v0.0.0-20181215224939-bdd8b1ecd793
+go: finding github.com/spf13/pflag v1.0.3
+go: finding github.com/bazelbuild/bazel-gazelle v0.0.0-20190402225339-e530fae7ce5c
+go: finding github.com/prometheus/procfs v0.0.3
+go: finding github.com/klauspost/compress v1.4.1
+go: finding github.com/mailru/easyjson v0.0.0-20171120080333-32fa128f234d
+go: finding golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6
+go: finding github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5
+go: finding github.com/go-sql-driver/mysql v0.0.0-20160411075031-7ebe0a500653
+go: finding github.com/pelletier/go-toml v1.3.0
+go: finding google.golang.org/appengine v1.2.0
+go: finding github.com/docker/distribution v0.0.0-20170726174610-edc3ab29cdff
+go: finding github.com/pkg/errors v0.8.1
+go: finding go.etcd.io/etcd v0.0.0-20181031231232-83304cfc808c
+go: finding sigs.k8s.io/yaml v1.1.0
+go: finding github.com/blang/semver v3.5.1+incompatible
+go: finding github.com/google/go-cmp v0.2.0
+go: finding golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421
+go: finding golang.org/x/crypto v0.0.0-20190404164418-38d8ce5564a5
+go: finding vbom.ml/util v0.0.0-20170409195630-256737ac55c4
+go: finding github.com/peterbourgon/diskv v0.0.0-20171120014656-2973218375c3
+go: finding github.com/gobuffalo/envy v1.6.15
+go: finding github.com/influxdata/influxdb v0.0.0-20161215172503-049f9b42e9a5
+go: finding golang.org/x/sys v0.0.0-20190122071731-054c452bb702
+go: finding github.com/sirupsen/logrus v1.1.1
+go: finding github.com/golang/protobuf v1.2.0
+go: finding github.com/google/gofuzz v0.0.0-20170612174753-24818f796faf
+go: finding github.com/dgrijalva/jwt-go v3.2.0+incompatible
+go: finding golang.org/x/tools v0.0.0-20190122202912-9c309ee22fab
+go: finding github.com/shurcooL/go v0.0.0-20180423040247-9e1955d9fb6e
+go: finding golang.org/x/crypto v0.0.0-20181015023909-0c41d7ab0a0e
+go: finding golang.org/x/net v0.0.0-20180724234803-3673e40ba225
+go: finding github.com/prometheus/client_golang v0.8.0
+go: finding github.com/Microsoft/go-winio v0.4.12
+go: finding go.opencensus.io v0.20.2
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.0
+go: finding cloud.google.com/go v0.34.0
+go: finding github.com/prometheus/client_model v0.0.0-20170216185247-6f3806018612
+go: finding github.com/google/go-github v17.0.0+incompatible
+go: finding google.golang.org/genproto v0.0.0-20181016170114-94acd270e44e
+go: finding github.com/soheilhy/cmux v0.1.4
+go: finding golang.org/x/sys v0.0.0-20180905080454-ebe1bf3edb33
+go: finding github.com/mattn/go-runewidth v0.0.2
+go: finding github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a
+go: finding github.com/coreos/go-systemd v0.0.0-20180511133405-39ca1b05acc7
+go: finding github.com/fsouza/fake-gcs-server v0.0.0-20180612165233-e85be23bdaa8
+go: finding github.com/knative/build v0.1.2
+go: finding github.com/gorilla/websocket v0.0.0-20170926233335-4201258b820c
+go: finding golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
+go: finding github.com/spf13/pflag v1.0.1
+go: finding google.golang.org/genproto v0.0.0-20180608181217-32ee49c4dd80
+go: finding golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3
+go: finding github.com/json-iterator/go v1.1.5
+go: finding github.com/go-openapi/swag v0.0.0-20171111214437-cf0bdb963811
+go: finding github.com/googleapis/gax-go/v2 v2.0.5
+go: finding gopkg.in/check.v1 v1.0.0-20161208181325-20d25e280405
+go: finding golang.org/x/tools v0.0.0-20190226205152-f727befe758c
+go: finding github.com/jinzhu/now v1.0.1
+go: finding golang.org/x/sync v0.0.0-20181221193216-37e7f081c4d4
+go: finding github.com/gorilla/securecookie v1.1.1
+go: finding github.com/go-openapi/spec v0.0.0-20171219195406-fa03337d7da5
+go: finding github.com/prometheus/client_golang v0.9.4
+go: finding golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
+go: finding google.golang.org/grpc v1.15.0
+go: finding github.com/prometheus/procfs v0.0.0-20181005140218-185b4288413d
+go: finding github.com/prometheus/client_golang v0.9.0
+go: finding github.com/joho/godotenv v1.3.0
+go: finding github.com/olekukonko/tablewriter v0.0.0-20170122224234-a0225b3f23b5
+go: finding github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
+go: finding gopkg.in/cheggaaa/pb.v1 v1.0.25
+go: finding github.com/konsorten/go-windows-terminal-sequences v1.0.2
+go: finding github.com/fatih/color v1.7.0
+go: finding github.com/konsorten/go-windows-terminal-sequences v0.0.0-20180402223658-b729f2633dfe
+go: finding github.com/bazelbuild/buildtools v0.0.0-20190329162354-3f7be923c4b0
+go: finding github.com/andygrunwald/go-gerrit v0.0.0-20190120104749-174420ebee6c
+go: finding golang.org/x/net v0.0.0-20190108225652-1e06a53dbb7e
+go: finding github.com/mattn/go-isatty v0.0.4
+go: finding github.com/mitchellh/ioprogress v0.0.0-20180201004757-6a23b12fa88e
+go: finding github.com/Azure/go-autorest v10.15.5+incompatible
+go: finding github.com/coreos/go-semver v0.2.0
+go: finding github.com/golang/groupcache v0.0.0-20180513044358-24b0969c4cb7
+go: finding golang.org/x/net v0.0.0-20190311183353-d8887717615a
+go: finding k8s.io/gengo v0.0.0-20190306031000-7a1b7fb0289f
+go: finding gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127
+go: finding github.com/hashicorp/errwrap v0.0.0-20141028054710-7554cd9344ce
+go: finding go.uber.org/atomic v1.3.2
+go: finding github.com/hashicorp/go-multierror v0.0.0-20171204182908-b7773ae21874
+go: finding github.com/tmc/grpc-websocket-proxy v0.0.0-20170815181823-89b8d40f7ca8
+go: finding github.com/google/go-querystring v1.0.0
+go: finding golang.org/x/net v0.0.0-20180906233101-161cd47e91fd
+go: finding google.golang.org/api v0.3.2
+go: finding github.com/bwmarrin/snowflake v0.0.0
+go: finding github.com/prometheus/common v0.0.0-20180518154759-7600349dcfe1
+go: finding github.com/opencontainers/image-spec v1.0.1
+go: finding github.com/grpc-ecosystem/go-grpc-middleware v1.0.0
+go: finding go.uber.org/zap v1.9.1
+go: finding github.com/openzipkin/zipkin-go v0.1.6
+go: finding github.com/client9/misspell v0.3.4
+go: finding github.com/hashicorp/golang-lru v0.5.0
+go: finding golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f
+go: finding github.com/golang/mock v1.2.0
+go: finding github.com/denisenkom/go-mssqldb v0.0.0-20190111225525-2fea367d496d
+go: finding k8s.io/test-infra v0.0.0-20181019233642-2e10a0bbe9b3
+go: finding cloud.google.com/go v0.37.4
+go: finding github.com/Azure/azure-sdk-for-go v21.1.0+incompatible
+go: finding github.com/gogo/protobuf v1.2.1
+go: finding golang.org/x/sys v0.0.0-20180830151530-49385e6e1522
+go: finding github.com/sirupsen/logrus v1.0.5
+go: finding github.com/prometheus/common v0.4.1
+go: finding gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
+go: finding golang.org/x/tools v0.0.0-20180828015842-6cd1fcedba52
+go: finding k8s.io/code-generator v0.0.0-20190301173042-b1289fc74931
+go: finding github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
+go: finding github.com/gogo/protobuf v1.1.1
+go: finding github.com/imdario/mergo v0.0.0-20180119215619-163f41321a19
+go: finding github.com/golang/lint v0.0.0-20180702182130-06c8688daad7
+go: finding k8s.io/api v0.0.0-20181018013834-843ad2d9b9ae
+go: finding github.com/googleapis/gnostic v0.1.0
+go: finding google.golang.org/appengine v1.1.0
+go: finding github.com/spf13/cobra v0.0.3
+go: finding github.com/docker/go-connections v0.3.0
+go: finding github.com/ghodss/yaml v1.0.0
+go: finding github.com/prometheus/common v0.0.0-20181020173914-7e9e6cabbd39
+go: finding github.com/golang/groupcache v0.0.0-20160516000752-02826c3e7903
+go: finding github.com/onsi/ginkgo v1.6.0
+go: finding github.com/go-logfmt/logfmt v0.3.0
+go: finding github.com/go-openapi/jsonpointer v0.0.0-20170102174223-779f45308c19
+go: finding github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829
+go: finding github.com/google/go-cmp v0.3.0
+go: finding golang.org/x/exp v0.0.0-20190121172915-509febef88a4
+go: finding github.com/golang/mock v1.1.1
+go: finding github.com/gogo/protobuf v1.0.0
+go: finding github.com/stretchr/testify v1.3.0
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding golang.org/x/lint v0.0.0-20190227174305-5b3e6a55c961
+go: finding github.com/onsi/ginkgo v1.7.0
+go: finding golang.org/x/text v0.3.2
+go: finding github.com/google/btree v0.0.0-20180124185431-e89373fe6b4a
+go: finding google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8
+go: finding github.com/xiang90/probing v0.0.0-20160813154853-07dd2e8dfe18
+go: finding github.com/kr/pretty v0.1.0
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/apache/thrift v0.12.0
+go: finding honnef.co/go/tools v0.0.0-20180728063816-88497007e858
+go: finding github.com/go-kit/kit v0.8.0
+go: finding k8s.io/repo-infra v0.0.0-20190329054012-df02ded38f95
+go: finding golang.org/x/sys v0.0.0-20181122145206-62eef0e2fa9b
+go: finding github.com/gorilla/context v1.1.1
+go: finding github.com/bgentry/speakeasy v0.1.0
+go: finding golang.org/x/tools v0.0.0-20190404132500-923d25813098
+go: finding github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+go: finding github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c
+go: finding golang.org/x/time v0.0.0-20180412165947-fbb02b2291d2
+go: finding github.com/gorilla/mux v1.6.2
+go: finding golang.org/x/oauth2 v0.0.0-20181017192945-9dcd33a902f4
+go: finding github.com/aws/aws-sdk-go v1.16.36
+go: finding gopkg.in/alecthomas/kingpin.v2 v2.2.6
+go: finding github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
+go: finding github.com/prometheus/client_golang v0.9.1
+go: finding github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf
+go: finding go.uber.org/multierr v1.1.0
+go: finding github.com/google/pprof v0.0.0-20181206194817-3ea8567a2e57
+go: finding github.com/google/uuid v1.0.0
+go: finding github.com/onsi/gomega v1.4.2
+go: finding github.com/modern-go/reflect2 v1.0.1
+go: finding google.golang.org/grpc v1.14.0
+go: finding github.com/docker/docker v0.0.0-20171206114025-5e5fadb3c020
+go: finding github.com/Shopify/toxiproxy v2.1.4+incompatible
+go: finding github.com/NYTimes/gziphandler v0.0.0-20160419202541-63027b26b87e
+go: finding google.golang.org/grpc v1.19.0
+go: finding github.com/pkg/errors v0.8.0
+go: finding go.opencensus.io v0.20.1
+go: finding google.golang.org/grpc v1.17.0
+go: finding github.com/kr/logfmt v0.0.0-20140226030751-b84e30acd515
+go: finding github.com/gogo/protobuf v1.2.0
+go: finding github.com/pierrec/lz4 v2.0.5+incompatible
+go: finding github.com/go-openapi/jsonreference v0.0.0-20161105162150-36d33bfe519e
+go: finding github.com/dustin/go-humanize v1.0.0
+go: finding golang.org/x/text v0.3.0
+go: finding github.com/rogpeppe/go-internal v1.1.0
+go: finding github.com/prometheus/procfs v0.0.0-20190117184657-bf6a532e95b1
+go: finding golang.org/x/text v0.3.1-0.20180807135948-17ff2d5776d2
+go: finding github.com/prometheus/procfs v0.0.0-20180612222113-7d6f385de8be
+go: finding golang.org/x/sys v0.0.0-20181116152217-5ac8a444bdc5
+go: finding github.com/gorilla/sessions v1.1.3
+go: finding golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e
+go: finding github.com/mattn/go-zglob v0.0.1
+go: finding github.com/google/martian v2.1.0+incompatible
+go: finding github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
+go: finding k8s.io/apimachinery v0.0.0-20181015213631-60666be32c5d
+go: finding github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af
+go: finding golang.org/x/lint v0.0.0-20190301231843-5614ed5bae6f
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding github.com/opencontainers/go-digest v1.0.0-rc1
+go: finding gopkg.in/yaml.v2 v2.2.1
+go: finding github.com/googleapis/gax-go/v2 v2.0.4
+go: finding github.com/hpcloud/tail v1.0.0
+go: finding gopkg.in/airbrake/gobrake.v2 v2.0.9
+go: finding github.com/json-iterator/go v1.1.6
+go: finding github.com/spf13/cobra v0.0.5
+go: finding github.com/eapache/go-resiliency v1.1.0
+go: finding github.com/sirupsen/logrus v1.2.0
+go: finding github.com/Azure/azure-pipeline-go v0.1.8
+go: finding github.com/ugorji/go v1.1.1
+go: finding github.com/shurcooL/githubv4 v0.0.0-20180925043049-51d7b505e2e9
+go: finding github.com/davecgh/go-spew v1.1.0
+go: finding google.golang.org/appengine v1.4.0
+go: finding github.com/eapache/queue v1.1.0
+go: finding github.com/aws/aws-sdk-go v1.16.18
+go: finding github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223
+go: finding github.com/inconshreveable/mousetrap v1.0.0
+go: finding github.com/mattn/go-colorable v0.0.9
+go: finding golang.org/x/crypto v0.0.0-20180608092829-8ac0e0d97ce4
+go: finding google.golang.org/api v0.0.0-20181021000519-a2651947f503
+go: finding golang.org/x/net v0.0.0-20190125091013-d26f9f9a57f3
+go: finding github.com/stretchr/ob** v0.1.0
+go: finding github.com/kr/text v0.1.0
+go: finding github.com/shurcooL/graphql v0.0.0-20180924043259-e4a3a37e6d42
+go: finding gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
+go: finding golang.org/x/lint v0.0.0-20180702182130-06c8688daad7
+go: finding github.com/gobuffalo/envy v1.6.5
+go: finding github.com/googleapis/gax-go v2.0.0+incompatible
+go: finding github.com/urfave/cli v1.18.0
+go: finding github.com/coreos/pkg v0.0.0-20160727233714-3ac0863d7acf
+go: finding golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a
+go: finding github.com/beorn7/perks v1.0.0
+go: finding github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+go: finding github.com/prometheus/common v0.2.0
+go: finding google.golang.org/genproto v0.0.0-20190307195333-5fe7a883aa19
+go: finding golang.org/x/net v0.0.0-20181114220301-adae6a3d119a
+go: finding github.com/hashicorp/golang-lru v0.5.1
+go: finding golang.org/x/sys v0.0.0-20180909124046-d0be0721c37e
+go: finding gopkg.in/gemnasium/logrus-airbrake-hook.v2 v2.1.2
+go: finding github.com/Shopify/sarama v1.19.0
+go: finding github.com/jonboulle/clockwork v0.1.0
+go: finding gopkg.in/fsnotify.v1 v1.4.7
+go: finding honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099
+go: finding github.com/prometheus/procfs v0.0.2
+go: finding github.com/julienschmidt/httprouter v1.2.0
+go: finding github.com/onsi/gomega v1.4.3
+go: finding github.com/go-stack/stack v1.8.0
+go: finding gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
+go: finding cloud.google.com/go v0.30.0
+go: finding google.golang.org/api v0.3.1
+go: finding github.com/grpc-ecosystem/grpc-gateway v1.4.1
+go: finding k8s.io/kube-openapi v0.0.0-20180711000925-0cf8f7e6ed1d
+go: finding golang.org/x/tools v0.0.0-20190312170243-e65039ee4138
+go: finding github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: finding golang.org/x/crypto v0.0.0-20180904163835-0709b304e793
+go: finding honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a
+go: finding github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: finding github.com/mitchellh/go-homedir v1.1.0
+go: finding golang.org/x/net v0.0.0-20180826012351-8a410e7b638d
+go: finding go.opencensus.io v0.17.0
+go: finding go.etcd.io/bbolt v1.3.1-etcd.7
+go: finding github.com/pelletier/go-toml v1.2.0
+go: finding github.com/prometheus/client_model v0.0.0-20190115171406-56726106282f
+go: finding gopkg.in/errgo.v2 v2.1.0
+go: finding gopkg.in/inf.v0 v0.9.1
+go: finding github.com/kisielk/errcheck v1.1.0
+go: finding github.com/kr/pty v1.1.1
+go: finding golang.org/x/sys v0.0.0-20190403152447-81d4e9dc473e
+go: finding github.com/dustin/go-humanize v0.0.0-20171111073723-bb3d318650d4
+go: finding github.com/spf13/viper v1.3.2
+go: finding github.com/google/go-containerregistry v0.0.0-20190401215819-f1df91a4a813
+go: finding github.com/kisielk/gotool v1.0.0
+go: finding github.com/docker/go-units v0.3.3
+go: finding github.com/kr/pty v1.0.0
+go: finding gopkg.in/yaml.v2 v2.2.2
+go: finding git.apache.org/thrift.git v0.0.0-20180902110319-2566ecd5d999
+go: finding github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024
+go: finding google.golang.org/genproto v0.0.0-20180831171423-11092d34479b
+go: finding cloud.google.com/go v0.26.0
+go: finding google.golang.org/api v0.0.0-20180910000450-7ca32eb868bf
+go: finding k8s.io/utils v0.0.0-20181019225348-5e321f9a457c
+go: finding github.com/hashicorp/hcl v1.0.0
+go: finding github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a
+go: finding github.com/go-yaml/yaml v2.1.0+incompatible
+go: finding github.com/spf13/afero v1.1.2
+go: finding github.com/spf13/jwalterweatherman v1.0.0
+go: finding github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77
+go: finding github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6
+go: finding github.com/prometheus/procfs v0.0.0-20180725123919-05ee40e3a273
+go: finding github.com/magiconair/properties v1.8.0
+go: finding golang.org/x/tools v0.0.0-20190114222345-bf090417da8b
+go: finding github.com/prometheus/common v0.0.0-20180801064454-c7de2306084e
+go: finding golang.org/x/crypto v0.0.0-20181203042331-505ab145d0a9
+go: finding github.com/coreos/go-etcd v2.0.0+incompatible
+go: finding github.com/cpuguy83/go-md2man v1.0.10
+go: finding github.com/spf13/cast v1.3.0
+go: finding golang.org/x/sys v0.0.0-20181205085412-a5c9d58dba9a
+go: finding golang.org/x/tools v0.0.0-20180221164845-07fd8470d635
+go: finding github.com/mitchellh/mapstructure v1.1.2
+go: finding github.com/openzipkin/zipkin-go v0.1.1
+go: finding github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8
+go: finding github.com/coreos/etcd v3.3.10+incompatible
+go: finding github.com/russross/blackfriday v1.5.2
+go: downloading github.com/sirupsen/logrus v1.4.2
+go: downloading k8s.io/test-infra v0.0.0-20190709111002-c9d9081e68ff
+go: downloading k8s.io/client-go v9.0.0+incompatible
+go: downloading k8s.io/apimachinery v0.0.0-20190122181752-bebe27e40fb7
+go: extracting github.com/sirupsen/logrus v1.4.2
+go: downloading github.com/tektoncd/pipeline v0.1.1-0.20190327171839-7c43fbae2816
+go: extracting k8s.io/apimachinery v0.0.0-20190122181752-bebe27e40fb7
+go: extracting k8s.io/client-go v9.0.0+incompatible
+go: extracting github.com/tektoncd/pipeline v0.1.1-0.20190327171839-7c43fbae2816
+go: downloading github.com/knative/pkg v0.0.0-20190330034653-916205998db9
+go: extracting github.com/knative/pkg v0.0.0-20190330034653-916205998db9
+go: downloading golang.org/x/sys v0.0.0-20190422165155-953cdadca894
+go: extracting k8s.io/test-infra v0.0.0-20190709111002-c9d9081e68ff
+go: downloading github.com/google/gofuzz v0.0.0-20170612174753-24818f796faf
+go: extracting github.com/google/gofuzz v0.0.0-20170612174753-24818f796faf
+go: extracting golang.org/x/sys v0.0.0-20190422165155-953cdadca894
+go: downloading k8s.io/api v0.0.0-20181128191700-6db15a15d2d3
+go: extracting k8s.io/api v0.0.0-20181128191700-6db15a15d2d3
+go: downloading github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+go: extracting github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+go: downloading golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421
+go: downloading github.com/googleapis/gnostic v0.1.0
+go: extracting golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421
+go: downloading github.com/golang/protobuf v1.3.1
+go: extracting github.com/googleapis/gnostic v0.1.0
+go: extracting github.com/golang/protobuf v1.3.1
+go: downloading github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc
+go: extracting github.com/gregjones/httpcache v0.0.0-20190212212710-3befbb6ad0cc
+go: downloading github.com/gogo/protobuf v1.2.1
+go: downloading github.com/bwmarrin/snowflake v0.0.0
+go: downloading sigs.k8s.io/yaml v1.1.0
+go: downloading golang.org/x/net v0.0.0-20190403144856-b630fd6fe46b
+go: extracting github.com/bwmarrin/snowflake v0.0.0
+go: downloading github.com/gorilla/sessions v1.1.3
+go: downloading github.com/google/go-cmp v0.3.0
+go: extracting sigs.k8s.io/yaml v1.1.0
+go: downloading gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
+go: downloading golang.org/x/time v0.0.0-20181108054448-85acf8d2951c
+go: downloading github.com/golang/groupcache v0.0.0-20180513044358-24b0969c4cb7
+go: extracting github.com/gorilla/sessions v1.1.3
+go: downloading github.com/hashicorp/golang-lru v0.5.1
+go: extracting golang.org/x/time v0.0.0-20181108054448-85acf8d2951c
+go: extracting github.com/google/go-cmp v0.3.0
+go: extracting gopkg.in/robfig/cron.v2 v2.0.0-20150107220207-be2e0b0deed5
+go: extracting github.com/golang/groupcache v0.0.0-20180513044358-24b0969c4cb7
+go: extracting github.com/hashicorp/golang-lru v0.5.1
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: downloading k8s.io/kube-openapi v0.0.0-20180711000925-0cf8f7e6ed1d
+go: downloading github.com/gophercloud/gophercloud v0.0.0-20181215224939-bdd8b1ecd793
+go: downloading github.com/prometheus/client_golang v0.9.4
+go: extracting github.com/davecgh/go-spew v1.1.1
+go: extracting golang.org/x/net v0.0.0-20190403144856-b630fd6fe46b
+go: extracting k8s.io/kube-openapi v0.0.0-20180711000925-0cf8f7e6ed1d
+go: downloading github.com/evanphx/json-patch v4.2.0+incompatible
+go: extracting github.com/prometheus/client_golang v0.9.4
+go: downloading github.com/peterbourgon/diskv v0.0.0-20171120014656-2973218375c3
+go: extracting github.com/evanphx/json-patch v4.2.0+incompatible
+go: downloading github.com/imdario/mergo v0.0.0-20180119215619-163f41321a19
+go: downloading github.com/satori/go.uuid v0.0.0-20160713180306-0aa62d5ddceb
+go: extracting github.com/peterbourgon/diskv v0.0.0-20171120014656-2973218375c3
+go: extracting github.com/satori/go.uuid v0.0.0-20160713180306-0aa62d5ddceb
+go: extracting github.com/imdario/mergo v0.0.0-20180119215619-163f41321a19
+go: downloading gopkg.in/yaml.v2 v2.2.2
+go: downloading golang.org/x/crypto v0.0.0-20190404164418-38d8ce5564a5
+go: extracting github.com/gogo/protobuf v1.2.1
+go: downloading cloud.google.com/go v0.37.4
+go: extracting gopkg.in/yaml.v2 v2.2.2
+go: downloading github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c
+go: downloading gopkg.in/inf.v0 v0.9.1
+go: downloading github.com/fsnotify/fsnotify v1.4.7
+go: downloading github.com/modern-go/reflect2 v1.0.1
+go: downloading github.com/ghodss/yaml v1.0.0
+go: extracting github.com/gophercloud/gophercloud v0.0.0-20181215224939-bdd8b1ecd793
+go: extracting gopkg.in/inf.v0 v0.9.1
+go: downloading github.com/prometheus/common v0.4.1
+go: extracting github.com/modern-go/reflect2 v1.0.1
+go: extracting github.com/fsnotify/fsnotify v1.4.7
+go: extracting github.com/ghodss/yaml v1.0.0
+go: extracting github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c
+go: downloading github.com/spf13/pflag v1.0.3
+go: downloading github.com/Azure/go-autorest v10.15.5+incompatible
+go: extracting github.com/spf13/pflag v1.0.3
+go: extracting github.com/prometheus/common v0.4.1
+go: extracting github.com/Azure/go-autorest v10.15.5+incompatible
+go: extracting golang.org/x/crypto v0.0.0-20190404164418-38d8ce5564a5
+go: downloading github.com/gorilla/securecookie v1.1.1
+go: downloading github.com/gorilla/context v1.1.1
+go: extracting github.com/gorilla/securecookie v1.1.1
+go: downloading github.com/dgrijalva/jwt-go v3.2.0+incompatible
+go: extracting github.com/gorilla/context v1.1.1
+go: downloading github.com/json-iterator/go v1.1.6
+go: extracting github.com/dgrijalva/jwt-go v3.2.0+incompatible
+go: downloading golang.org/x/text v0.3.2
+go: extracting github.com/json-iterator/go v1.1.6
+go: downloading github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+go: extracting github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+go: downloading github.com/prometheus/procfs v0.0.3
+go: extracting cloud.google.com/go v0.37.4
+go: downloading github.com/knative/build v0.3.1-0.20190330033454-38ace00371c7
+go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: extracting github.com/prometheus/procfs v0.0.3
+go: extracting github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+go: extracting github.com/knative/build v0.3.1-0.20190330033454-38ace00371c7
+go: downloading github.com/beorn7/perks v1.0.0
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/beorn7/perks v1.0.0
+go: downloading google.golang.org/api v0.3.2
+go: downloading vbom.ml/util v0.0.0-20170409195630-256737ac55c4
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: downloading github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a
+go: extracting vbom.ml/util v0.0.0-20170409195630-256737ac55c4
+go: extracting github.com/mattbaird/jsonpatch v0.0.0-20171005235357-81af80346b1a
+go: downloading github.com/shurcooL/githubv4 v0.0.0-20180925043049-51d7b505e2e9
+go: extracting github.com/shurcooL/githubv4 v0.0.0-20180925043049-51d7b505e2e9
+go: downloading github.com/shurcooL/graphql v0.0.0-20180924043259-e4a3a37e6d42
+go: extracting github.com/shurcooL/graphql v0.0.0-20180924043259-e4a3a37e6d42
+go: downloading github.com/shurcooL/go v0.0.0-20180423040247-9e1955d9fb6e
+go: extracting github.com/shurcooL/go v0.0.0-20180423040247-9e1955d9fb6e
+go: downloading github.com/gomodule/redigo v1.7.0
+go: extracting github.com/gomodule/redigo v1.7.0
+go: downloading golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6
+go: extracting golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6
+go: downloading go.opencensus.io v0.20.2
+go: downloading google.golang.org/grpc v1.19.1
+go: downloading github.com/googleapis/gax-go v2.0.0+incompatible
+go: extracting github.com/googleapis/gax-go v2.0.0+incompatible
+go: downloading github.com/googleapis/gax-go/v2 v2.0.5
+go: extracting go.opencensus.io v0.20.2
+go: extracting github.com/googleapis/gax-go/v2 v2.0.5
+go: extracting google.golang.org/grpc v1.19.1
+go: extracting golang.org/x/text v0.3.2
+go: downloading google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107
+go: extracting google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107
+go: extracting google.golang.org/api v0.3.2
+GO111MODULE=on GO15VENDOREXPERIMENT=1 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags '' -o build/pipeline cmd/pipeline/main.go
+GO111MODULE=on GO15VENDOREXPERIMENT=1 CGO_ENABLED=0 go test -v ./...
+=== RUN   TestOptions
+=== RUN   TestOptions/defaults_work
+=== RUN   TestOptions/error_when_providing_both_kubedonfig_and_build-cluter_options_
+=== RUN   TestOptions/parse_all_arguments
+--- PASS: TestOptions (0.00s)
+    --- PASS: TestOptions/defaults_work (0.00s)
+    --- PASS: TestOptions/error_when_providing_both_kubedonfig_and_build-cluter_options_ (0.00s)
+    --- PASS: TestOptions/parse_all_arguments (0.00s)
+PASS
+ok  	github.com/jenkins-x/prow-pipeline-controller/cmd/pipeline	0.028s
+=== RUN   TestEnqueueKey
+=== RUN   TestEnqueueKey/enqueue_pipeline_directly
+=== RUN   TestEnqueueKey/enqueue_prowjob's_spec_namespace
+=== RUN   TestEnqueueKey/ignore_random_object
+time="2019-08-07T18:50:06Z" level=warning msg="cannot enqueue unknown type string: bar"
+--- PASS: TestEnqueueKey (0.08s)
+    --- PASS: TestEnqueueKey/enqueue_pipeline_directly (0.00s)
+    --- PASS: TestEnqueueKey/enqueue_prowjob's_spec_namespace (0.00s)
+    --- PASS: TestEnqueueKey/ignore_random_object (0.08s)
+=== RUN   TestReconcile
+=== RUN   TestReconcile/new_prow_job_creates_pipeline
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Create pipelinerun using external pipeline runner service: //the-object-name/ProwJob"
+time="2019-08-07T18:50:06Z" level=debug msg="requestPipelineRun: ctx=, ns=, pj=the-object-name"
+time="2019-08-07T18:50:06Z" level=debug msg="getPipelineRun: ctx=, ns=, name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name:  - triggered [ scheduling ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/do_not_create_pipeline_run_for_failed_prowjob
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Observed finished: //the-object-name/ProwJob"
+=== RUN   TestReconcile/do_not_create_pipeline_run_for_successful_prowjob
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Observed finished: //the-object-name/ProwJob"
+=== RUN   TestReconcile/do_not_create_pipeline_run_for_aborted_prowjob
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Observed finished: //the-object-name/ProwJob"
+=== RUN   TestReconcile/delete_pipeline_run_after_deleting_prowjob
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+=== RUN   TestReconcile/do_not_delete_deleted_pipeline_runs
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+=== RUN   TestReconcile/only_delete_pipeline_runs_created_by_Controller
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+=== RUN   TestReconcile/do_not_delete_pipeline_run_in_the_wrong_cluster
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: wrong-cluster//the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=warning msg="wrong-cluster//the-object-name/ProwJob found in context wrong-cluster not target-cluster"
+=== RUN   TestReconcile/ignore_random_pipeline_run_in_the_wrong_cluster
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: wrong-cluster//the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=warning msg="wrong-cluster//the-object-name/ProwJob found in context wrong-cluster not target-cluster"
+=== RUN   TestReconcile/update_job_status_if_pipeline_run_resets
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - triggered [ scheduling ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/prowjob_goes_triggered__when_pipeline_run_starts
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - triggered [ scheduling ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/prowjob_succeeds_when_run_pipeline_succeeds
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - success [ hello ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/prowjob_fails_when_pipeline_run_fails
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - failure [ hello ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/error_when_we_cannot_get_prowjob
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: /error-get-prowjob/error-get-prowjob/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=error-get-prowjob"
+=== RUN   TestReconcile/error_when_we_cannot_get_pipeline_run
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: /error-get-pipeline/the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+=== RUN   TestReconcile/error_when_we_cannot_delete_pipeline_run
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: /error-delete-pipeline/the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+=== RUN   TestReconcile/set_job_in_error_state_when_we_cannot_create_pipeline_run
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: /error-create-pipeline/the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Create pipelinerun using external pipeline runner service: /error-create-pipeline/the-object-name/ProwJob"
+time="2019-08-07T18:50:06Z" level=debug msg="requestPipelineRun: ctx=, ns=error-create-pipeline, pj=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name:  - error [ injected request pipeline error ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/set_job_in_error_state_when_pipelinerunspec_is_nil_and_request_pipeline_run_retuns_an_error
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+time="2019-08-07T18:50:06Z" level=info msg="Create pipelinerun using external pipeline runner service: //the-object-name/ProwJob"
+time="2019-08-07T18:50:06Z" level=debug msg="requestPipelineRun: ctx=, ns=, pj=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: triggered - error [ no PipelineRunSpec defined ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/error_when_we_cannot_update_prowjob
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: /error-update-prowjob/error-update-prowjob/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=error-update-prowjob"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/error-update-prowjob: pending - success [ hello ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=error-update-prowjob"
+=== RUN   TestReconcile/with_successful_metapipeline_and_generated_pipeline
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - success [ Exec pipeline ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/with_successful_metapipeline_and_running_generated_pipeline
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - pending [ Exec pipeline ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/with_successful_metapipeline_and_failed_generated_pipeline
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - failure [ Exec pipeline ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+=== RUN   TestReconcile/with_successful_metapipeline_and_triggered_generated_pipeline
+time="2019-08-07T18:50:06Z" level=debug msg="Reconcile: //the-object-name/ProwJob\n"
+time="2019-08-07T18:50:06Z" level=debug msg="getProwJob: name=the-object-name"
+2019-08-07 18:50:06.343982881 +0000 UTC m=+0.105309910
+time="2019-08-07T18:50:06Z" level=info msg="Update ProwJob/the-object-name: pending - triggered [ scheduling ]"
+time="2019-08-07T18:50:06Z" level=debug msg="updateProwJob: name=the-object-name"
+--- PASS: TestReconcile (0.01s)
+    --- PASS: TestReconcile/new_prow_job_creates_pipeline (0.00s)
+    --- PASS: TestReconcile/do_not_create_pipeline_run_for_failed_prowjob (0.00s)
+    --- PASS: TestReconcile/do_not_create_pipeline_run_for_successful_prowjob (0.00s)
+    --- PASS: TestReconcile/do_not_create_pipeline_run_for_aborted_prowjob (0.00s)
+    --- PASS: TestReconcile/delete_pipeline_run_after_deleting_prowjob (0.00s)
+    --- PASS: TestReconcile/do_not_delete_deleted_pipeline_runs (0.00s)
+    --- PASS: TestReconcile/only_delete_pipeline_runs_created_by_Controller (0.00s)
+    --- PASS: TestReconcile/do_not_delete_pipeline_run_in_the_wrong_cluster (0.00s)
+    --- PASS: TestReconcile/ignore_random_pipeline_run_in_the_wrong_cluster (0.00s)
+    --- PASS: TestReconcile/update_job_status_if_pipeline_run_resets (0.00s)
+    --- PASS: TestReconcile/prowjob_goes_triggered__when_pipeline_run_starts (0.00s)
+    --- PASS: TestReconcile/prowjob_succeeds_when_run_pipeline_succeeds (0.00s)
+    --- PASS: TestReconcile/prowjob_fails_when_pipeline_run_fails (0.00s)
+    --- PASS: TestReconcile/error_when_we_cannot_get_prowjob (0.00s)
+    --- PASS: TestReconcile/error_when_we_cannot_get_pipeline_run (0.00s)
+    --- PASS: TestReconcile/error_when_we_cannot_delete_pipeline_run (0.00s)
+    --- PASS: TestReconcile/set_job_in_error_state_when_we_cannot_create_pipeline_run (0.00s)
+    --- PASS: TestReconcile/set_job_in_error_state_when_pipelinerunspec_is_nil_and_request_pipeline_run_retuns_an_error (0.00s)
+    --- PASS: TestReconcile/error_when_we_cannot_update_prowjob (0.00s)
+    --- PASS: TestReconcile/with_successful_metapipeline_and_generated_pipeline (0.00s)
+    --- PASS: TestReconcile/with_successful_metapipeline_and_running_generated_pipeline (0.00s)
+    --- PASS: TestReconcile/with_successful_metapipeline_and_failed_generated_pipeline (0.00s)
+    --- PASS: TestReconcile/with_successful_metapipeline_and_triggered_generated_pipeline (0.00s)
+=== RUN   TestDefaultEnv
+=== RUN   TestDefaultEnv/nothing_set_works
+=== RUN   TestDefaultEnv/add_env
+=== RUN   TestDefaultEnv/do_not_override_env
+--- PASS: TestDefaultEnv (0.00s)
+    --- PASS: TestDefaultEnv/nothing_set_works (0.00s)
+    --- PASS: TestDefaultEnv/add_env (0.00s)
+    --- PASS: TestDefaultEnv/do_not_override_env (0.00s)
+=== RUN   TestPipelineRunMeta
+=== RUN   TestPipelineRunMeta/Use_pj.Spec.Namespace_for_pipeline_namespace
+--- PASS: TestPipelineRunMeta (0.00s)
+    --- PASS: TestPipelineRunMeta/Use_pj.Spec.Namespace_for_pipeline_namespace (0.00s)
+=== RUN   TestMakePipelineGitResouce
+=== RUN   TestMakePipelineGitResouce/creates_valid_pipeline_resource_with_emtpy_paramaters
+=== RUN   TestMakePipelineGitResouce/creates_valid_pipeline_resource_with_sourceURL_and_base_SHA
+=== RUN   TestMakePipelineGitResouce/creates_valid_pipeline_resource_with_sourceURL_and_pull_request_SHA
+--- PASS: TestMakePipelineGitResouce (0.00s)
+    --- PASS: TestMakePipelineGitResouce/creates_valid_pipeline_resource_with_emtpy_paramaters (0.00s)
+    --- PASS: TestMakePipelineGitResouce/creates_valid_pipeline_resource_with_sourceURL_and_base_SHA (0.00s)
+    --- PASS: TestMakePipelineGitResouce/creates_valid_pipeline_resource_with_sourceURL_and_pull_request_SHA (0.00s)
+=== RUN   TestMakePipelineRun
+=== RUN   TestMakePipelineRun/reject_empty_prow_job
+=== RUN   TestMakePipelineRun/return_valid_pipeline_with_valid_prowjob
+=== RUN   TestMakePipelineRun/configure_source_when_refs_are_set
+=== RUN   TestMakePipelineRun/do_not_override_source_when_set
+--- PASS: TestMakePipelineRun (0.00s)
+    --- PASS: TestMakePipelineRun/reject_empty_prow_job (0.00s)
+    --- PASS: TestMakePipelineRun/return_valid_pipeline_with_valid_prowjob (0.00s)
+    --- PASS: TestMakePipelineRun/configure_source_when_refs_are_set (0.00s)
+    --- PASS: TestMakePipelineRun/do_not_override_source_when_set (0.00s)
+=== RUN   TestDescription
+--- PASS: TestDescription (0.00s)
+=== RUN   TestProwJobStatus
+=== RUN   TestProwJobStatus/empty_conditions_returns_triggered/scheduling
+=== RUN   TestProwJobStatus/truly_succeeded_state_returns_success
+=== RUN   TestProwJobStatus/falsely_succeeded_state_returns_failure
+=== RUN   TestProwJobStatus/unstarted_job_returns_pending/running
+=== RUN   TestProwJobStatus/unfinished_job_returns_running
+=== RUN   TestProwJobStatus/pipelines_with_unknown_success_status_are_still_running
+=== RUN   TestProwJobStatus/completed_pipelines_without_a_succeeded_condition_end_in_tirggered/scheduling
+=== RUN   TestProwJobStatus/truly_succeeded_state_returns_success_[fallback]
+=== RUN   TestProwJobStatus/falsely_succeeded_state_returns_failure_[fallback]
+=== RUN   TestProwJobStatus/unstarted_job_returns_pending/running_[fallback]
+=== RUN   TestProwJobStatus/unfinished_job_returns_running_[fallback]
+=== RUN   TestProwJobStatus/pipelines_with_unknown_success_status_are_still_running_[fallback]
+--- PASS: TestProwJobStatus (0.00s)
+    --- PASS: TestProwJobStatus/empty_conditions_returns_triggered/scheduling (0.00s)
+    --- PASS: TestProwJobStatus/truly_succeeded_state_returns_success (0.00s)
+    --- PASS: TestProwJobStatus/falsely_succeeded_state_returns_failure (0.00s)
+    --- PASS: TestProwJobStatus/unstarted_job_returns_pending/running (0.00s)
+    --- PASS: TestProwJobStatus/unfinished_job_returns_running (0.00s)
+    --- PASS: TestProwJobStatus/pipelines_with_unknown_success_status_are_still_running (0.00s)
+    --- PASS: TestProwJobStatus/completed_pipelines_without_a_succeeded_condition_end_in_tirggered/scheduling (0.00s)
+    --- PASS: TestProwJobStatus/truly_succeeded_state_returns_success_[fallback] (0.00s)
+    --- PASS: TestProwJobStatus/falsely_succeeded_state_returns_failure_[fallback] (0.00s)
+    --- PASS: TestProwJobStatus/unstarted_job_returns_pending/running_[fallback] (0.00s)
+    --- PASS: TestProwJobStatus/unfinished_job_returns_running_[fallback] (0.00s)
+    --- PASS: TestProwJobStatus/pipelines_with_unknown_success_status_are_still_running_[fallback] (0.00s)
+PASS
+ok  	github.com/jenkins-x/prow-pipeline-controller/internal/controller	0.131s
+go: finding golang.org/x/lint latest
+go: downloading golang.org/x/lint v0.0.0-20190409202823-959b441ac422
+go: extracting golang.org/x/lint v0.0.0-20190409202823-959b441ac422
+go: finding golang.org/x/tools v0.0.0-20190311212946-11955173bddd
+go: downloading golang.org/x/tools v0.0.0-20190404132500-923d25813098
+go: extracting golang.org/x/tools v0.0.0-20190404132500-923d25813098
+go: finding github.com/GeertJohan/fgt latest
+go: downloading github.com/GeertJohan/fgt v0.0.0-20160120143236-262f7b11eec0
+go: extracting github.com/GeertJohan/fgt v0.0.0-20160120143236-262f7b11eec0
+go: finding github.com/antham/gommit v2.2.0+incompatible
+go: downloading github.com/antham/gommit v2.2.0+incompatible
+go: extracting github.com/antham/gommit v2.2.0+incompatible
+go: downloading github.com/fatih/color v1.7.0
+go: downloading github.com/spf13/viper v1.3.2
+go: downloading github.com/spf13/cobra v0.0.5
+go: extracting github.com/spf13/viper v1.3.2
+go: extracting github.com/fatih/color v1.7.0
+go: extracting github.com/spf13/cobra v0.0.5
+go: downloading github.com/mattn/go-colorable v0.0.9
+go: downloading github.com/mattn/go-isatty v0.0.4
+go: downloading github.com/spf13/jwalterweatherman v1.0.0
+go: downloading github.com/pelletier/go-toml v1.3.0
+go: downloading github.com/hashicorp/hcl v1.0.0
+go: downloading github.com/spf13/cast v1.3.0
+go: extracting github.com/mattn/go-colorable v0.0.9
+go: extracting github.com/pelletier/go-toml v1.3.0
+go: extracting github.com/spf13/jwalterweatherman v1.0.0
+go: extracting github.com/spf13/cast v1.3.0
+go: extracting github.com/mattn/go-isatty v0.0.4
+go: extracting github.com/hashicorp/hcl v1.0.0
+go: downloading github.com/spf13/afero v1.1.2
+go: downloading github.com/magiconair/properties v1.8.0
+go: downloading github.com/mitchellh/mapstructure v1.1.2
+go: extracting github.com/magiconair/properties v1.8.0
+go: extracting github.com/spf13/afero v1.1.2
+go: extracting github.com/mitchellh/mapstructure v1.1.2
+go: finding github.com/dlclark/regexp2 v1.2.0
+go: finding gopkg.in/src-d/go-git.v4 v4.13.1
+go: downloading github.com/dlclark/regexp2 v1.2.0
+go: extracting github.com/dlclark/regexp2 v1.2.0
+go: downloading gopkg.in/src-d/go-git.v4 v4.13.1
+go: extracting gopkg.in/src-d/go-git.v4 v4.13.1
+go: finding golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+go: finding github.com/stretchr/ob** v0.2.0
+go: finding github.com/pelletier/go-buffruneio v0.2.0
+go: finding gopkg.in/warnings.v0 v0.1.2
+go: finding golang.org/x/tools v0.0.0-20190729092621-ff9f1409240a
+go: finding github.com/sergi/go-diff v1.0.0
+go: finding github.com/emirpasic/gods v1.12.0
+go: finding gopkg.in/src-d/go-billy.v4 v4.3.2
+go: finding github.com/flynn/go-shlex v0.0.0-20150515145356-3f9db97f8568
+go: finding github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99
+go: finding github.com/gliderlabs/ssh v0.2.2
+go: finding github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd
+go: finding github.com/jessevdk/go-flags v1.4.0
+go: finding github.com/xanzy/ssh-agent v0.2.1
+go: finding github.com/src-d/gcfg v1.4.0
+go: finding github.com/anmitsu/go-shlex v0.0.0-20161002113705-648efa622239
+go: finding github.com/alcortesm/tgz v0.0.0-20161220082320-9c5fe88206d7
+go: finding gopkg.in/src-d/go-git-fixtures.v3 v3.5.0
+go: finding golang.org/x/sys v0.0.0-20190412213103-97732733099d
+go: finding golang.org/x/net v0.0.0-20190724013045-ca1201d0de80
+go: finding github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5
+go: finding golang.org/x/sys v0.0.0-20190726091711-fc99dfbffb4e
+go: finding golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3
+go: finding github.com/kr/pty v1.1.8
+go: finding golang.org/x/sync v0.0.0-20190423024810-112230192c58
+go: finding golang.org/x/net v0.0.0-20190620200207-3b0461eec859
+go: finding golang.org/x/crypto v0.0.0-20190219172222-a4c6cb3142f2
+go: finding golang.org/x/sys v0.0.0-20190221075227-b4e8571b14e0
+go: finding github.com/creack/pty v1.1.7
+go: downloading github.com/emirpasic/gods v1.12.0
+go: downloading github.com/sergi/go-diff v1.0.0
+go: downloading golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+go: downloading github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99
+go: downloading golang.org/x/sys v0.0.0-20190726091711-fc99dfbffb4e
+go: downloading gopkg.in/src-d/go-billy.v4 v4.3.2
+go: downloading github.com/src-d/gcfg v1.4.0
+go: downloading github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd
+go: downloading github.com/mitchellh/go-homedir v1.1.0
+go: extracting github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99
+go: extracting gopkg.in/src-d/go-billy.v4 v4.3.2
+go: extracting github.com/mitchellh/go-homedir v1.1.0
+go: extracting github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd
+go: extracting github.com/src-d/gcfg v1.4.0
+go: downloading golang.org/x/net v0.0.0-20190724013045-ca1201d0de80
+go: extracting github.com/sergi/go-diff v1.0.0
+go: downloading github.com/xanzy/ssh-agent v0.2.1
+go: downloading gopkg.in/warnings.v0 v0.1.2
+go: extracting github.com/emirpasic/gods v1.12.0
+go: extracting golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+go: extracting golang.org/x/sys v0.0.0-20190726091711-fc99dfbffb4e
+go: extracting github.com/xanzy/ssh-agent v0.2.1
+go: extracting gopkg.in/warnings.v0 v0.1.2
+go: extracting golang.org/x/net v0.0.0-20190724013045-ca1201d0de80
+LINTING
+VETTING
+go: downloading golang.org/x/sync v0.0.0-20190423024810-112230192c58
+go: extracting golang.org/x/sync v0.0.0-20190423024810-112230192c58
+make: *** [check] Error 1
+Makefile:45: recipe for target 'check' failed
