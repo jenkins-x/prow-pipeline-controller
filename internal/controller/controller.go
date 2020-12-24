@@ -402,9 +402,6 @@ func (c *Controller) getPipelineRunsWithSelector(context, namespace, selector st
 	if err != nil {
 		return nil, fmt.Errorf("failed to list pipelineruns with label %s", label.String())
 	}
-	if len(runs) > 1 {
-		return nil, fmt.Errorf("%s pipelineruns found with label %s, expected only 1", string(len(runs)), label.String())
-	}
 	if len(runs) == 0 {
 		return nil, apierrors.NewNotFound(pipelinev1alpha1.Resource("pipelinerun"), label.String())
 	}
@@ -532,20 +529,20 @@ func reconcile(c reconciler, key string) error {
 		if err != nil {
 			return fmt.Errorf("no pipelinerun found with name %s: %v", name, err)
 		}
-		prowJobName := p.Labels[prowJobName]
-		if prowJobName == "" {
+		jobName := p.Labels[prowJobName]
+		if jobName == "" {
 			return fmt.Errorf("no prowjob name label for pipelinerun %s: %v", name, err)
 		}
 
-		pj, err = c.getProwJob(prowJobName)
+		pj, err = c.getProwJob(jobName)
 		if err != nil {
 			return fmt.Errorf("no matching prowjob for pipelinerun %s: %v", name, err)
 		}
 
-		selector := fmt.Sprintf("%s = %s", prowJobName, name)
+		selector := fmt.Sprintf("%s = %s", prowJobName, jobName)
 		runs, err = c.getPipelineRunsWithSelector(ctx, namespace, selector)
 		if err != nil {
-			return fmt.Errorf("get pipelineruns %s by prow job %s: %v", key, prowJobName, err)
+			return fmt.Errorf("get pipelineruns %s by prow job %s: %v", key, jobName, err)
 		}
 		havePipelineRun = true
 
