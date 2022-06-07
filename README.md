@@ -1,3 +1,7 @@
+Nothing to see here
+ 
+# Instead look here [lighthouse](https://github.com/jenkins-x/lighthouse/)
+
 # Prow Pipeline Controller
 
 This is a replacement controller for the original Prow [pipeline controller](https://github.com/kubernetes/test-infra/tree/master/prow/cmd/pipeline) intended for use within Jenkins-X.
